@@ -1,20 +1,19 @@
 ﻿namespace Calendars
 {
-    internal class Date
+    internal class YearDate
     {
-        private int _year;
         private int _month;
         private int _day;
 
-        public Date(int year, int month, int day)
+        public YearDate(int month, int day)
         {
-            _year = year;
             _month = month;
             _day = day;
         }
+
         public override string ToString()
         {
-            return _month + "/" + _day + "/" + _year;
+            return _month + "/" + _day;
         }
     }
 }

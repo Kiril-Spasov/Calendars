@@ -6,5 +6,8 @@ class Program
     {
         Date birthdate = new Date(2016, 2, 29);
         Child schoolChild = new Child("Jill", birthdate);
+
+        Console.WriteLine(birthdate);
+        Console.WriteLine(schoolChild);
     }
 }

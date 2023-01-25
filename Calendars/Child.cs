@@ -16,5 +16,10 @@ namespace Calendars
             _name = name;
             _birthdate = birthdate;
         }
+
+        public override string ToString()
+        {
+            return _name + " born on " + _birthdate;
+        }
     }
 }
