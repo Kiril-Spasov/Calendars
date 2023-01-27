@@ -22,9 +22,7 @@ namespace Calendars
             return _name + " born on " + _birthdate;
         }
 
-        public Date GetDateByAge(int age)
-        {
-            return _birthdate.AddYears(age);
-        }
+        public Date GetDateByAge(int age) =>
+                _birthdate.AddYears(age);
     }
 }

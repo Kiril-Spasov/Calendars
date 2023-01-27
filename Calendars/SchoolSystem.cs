@@ -21,11 +21,9 @@ namespace Calendars
 
         public Date GetBeginning(Child child)
         {
-            Date oldEnough = child.GetDateByAge(_minAge);
-            Date cutoff = oldEnough.GetFirstOccurrence(_cutoff);
-            Date schoolDay = cutoff.GetFirstOccurrence(_schoolStart);
-
-            return schoolDay;
+            return child.GetDateByAge(_minAge)
+                        .GetFirstOccurrence(_cutoff)
+                        .GetFirstOccurrence(_schoolStart);
         }
     }
 }

@@ -15,68 +15,28 @@
         {
             return _month + "/" + _day;
         }
-        public bool IsBefore(YearDate other)
-        {
-            if (_month < other._month)
-            {
-                return true;
-            }
-            else if (_month == other._month)
-            {
-                if (_day < other._day)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
+        public bool IsBefore(YearDate other) =>
+          _month < other._month ||
+           (_month == other._month && _day < other._day);
 
-        public bool IsLeap()
-        {
-            if (_month == 2 && _day == 29)
-                return true;
-            else
-                return false;
-        }
+        public bool IsLeap() =>
+               _month == 2 && _day == 29;
 
-        public YearDate GetNext()
-        {
-            if (IsEndOfMonth())
-                return new YearDate(NextMonth(), 1);
-            else
-                return new YearDate(_month, _day + 1);
-        }
+        public YearDate GetNext() =>
+        IsEndOfMonth() ? new YearDate(NextMonth(), 1)
+                       : new YearDate(_month, _day + 1);
 
-        private bool IsEndOfMonth()
-        {
-            if (_day == DaysInMonth())
-                return true;
-            else
-                return false;
-        }
+        private bool IsEndOfMonth() =>
+            _day == DaysInMonth();
+               
+        
 
-        private int DaysInMonth()
-        {
-            if (_month == 2)
-                return 29;
-            else if(_month == 4 || _month == 6 || _month == 9 || _month == 11)
-                return 30;
-            else
-                return 31;
-        }
-        private int NextMonth()
-        {
-            if (_month == 12)
-                return 1;
-            else
-                return _month + 1;
-        }
+        private int DaysInMonth() =>
+            _month == 2 ? 29
+            : _month == 4 || _month == 6 || _month == 9 || _month == 11 ? 30
+            : 31;
+
+        private int NextMonth() =>
+            _month == 12 ? 1 : _month + 1;
     }
 }

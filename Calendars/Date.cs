@@ -1,4 +1,6 @@
-﻿namespace Calendars
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace Calendars
 {
     internal class Date
     {
@@ -10,54 +12,29 @@
             _year = year;
             _day = day;
         }
-        public override string ToString()
-        {
-            return _day + "/" + _year;
-        }
+        public override string ToString() =>
+            _day + "/" + _year;
 
-        public Date AddYears(int count)
-        {
-            return FirstValidDate(_year + count, _day);
-        }
+        public Date AddYears(int count) =>
+            FirstValidDate(_year + count, _day);
 
-        private Date FirstValidDate(int year, YearDate day)
-        {
-            if (day.IsLeap() && !IsLeap(year))
-                return new Date(year, day.GetNext());
-            else
-                return new Date(year, day);
-        }
+        private Date FirstValidDate(int year, YearDate day) =>
+        (day.IsLeap() && !IsLeap(year)) ? new Date(year, day.GetNext())
+            : new Date(year, day);
 
-        private bool IsLeap(int year)
-        {
-            if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
-                return true;
-            else
-                return false;
-        }
-        public Date GetFirstOccurrence(YearDate day)
-        {
-            if (day.IsBefore(_day))
-                return GetFirstDayOccurrence(_year + 1, day);
-            else
-                return GetFirstDayOccurrence(_year, day);
-        }
+        private bool IsLeap(int year) =>
+            year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
 
-        private Date GetFirstDayOccurrence(int year, YearDate day)
-        {
-            if (day.IsLeap())
-                return new Date(GetLeap(year), day);
-            else
-                return new Date(year, day);
-        }
 
-        private int GetLeap(int year)
-        {
-            if (IsLeap(year))
-                return year;
-            else
-                return GetLeap(year + 1);
-        }
+        public Date GetFirstOccurrence(YearDate day) =>
+             GetFirstDayOccurrence((day.IsBefore(_day) ? _year + 1 : _year), day);
+        
+
+        private Date GetFirstDayOccurrence(int year, YearDate day) =>
+            day.IsLeap() ? new Date(GetLeap(year), day) : new Date(year, day);
+
+        private int GetLeap(int year) =>
+            IsLeap(year) ? year : GetLeap(year + 1);
 
     }
 }
