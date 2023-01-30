@@ -24,5 +24,8 @@ namespace Calendars
 
         public Date GetDateByAge(int age) =>
                 _birthdate.AddYears(age);
+        public Date GetFirstCelebrationAt(SchoolSystem school) =>
+            school.GetBeginning(this).GetFirstDayOccurrence(_birthdate);
+        
     }
 }

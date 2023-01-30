@@ -25,5 +25,6 @@ namespace Calendars
                         .GetFirstOccurrence(_cutoff)
                         .GetFirstOccurrence(_schoolStart);
         }
+
     }
 }

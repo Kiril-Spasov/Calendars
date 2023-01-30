@@ -2,19 +2,28 @@
 
 class Program
 {
+    static void Demonstrate(Calendar cal)
+    {
+        SchoolSystem schoolSystem = new SchoolSystem(cal.Create(3, 1), 5, cal.Create(8, 15));
+
+        Child jill = new Child("Jill", cal.Create(1892, 2, 29));
+        Child jake = new Child("Jake", cal.Create(1891, 8, 29));
+
+        Console.WriteLine("Using " + cal.GetName() + " calendar.");
+        Report(jill, schoolSystem);
+        Report(jake, schoolSystem);
+
+
+    }
+    static void Report(Child child, SchoolSystem school)
+    {
+        Console.WriteLine(child + " starts school " + school.GetBeginning(child) + 
+            ", celebrates first birthday at school on " + child.GetFirstCelebrationAt(school));
+    }
     static void Main(string[] args)
     {
-        YearDate cutoffDay = new YearDate(3, 1);
-        YearDate start = new YearDate(8, 15);
-        Date birthdate = new Date(2016, new YearDate(2, 29));
-        Child schoolChild = new Child("Jill", birthdate);
-
-        SchoolSystem schoolSystem = new SchoolSystem(cutoffDay, 5, start);
-
-        Date beginningSchoolJill = schoolSystem.GetBeginning(schoolChild);
-
-        Console.WriteLine(schoolChild);
-        Console.WriteLine("Should begin school on: " + beginningSchoolJill);
+        Demonstrate(new GregorianCalendar());
+        Demonstrate(new JulianCalendar());
         
     }
 }
