@@ -19,12 +19,9 @@ namespace Calendars
             _schoolStart = schoolStart;
         }
 
-        public Date GetBeginning(Child child)
-        {
-            return child.GetDateByAge(_minAge)
-                        .GetFirstOccurrence(_cutoff)
-                        .GetFirstOccurrence(_schoolStart);
-        }
-
+        public Date GetBeginning(Child child) =>
+                child.GetDateByAge(_minAge)
+                     .GetFirstOccurrence(_cutoff)
+                     .GetFirstOccurrence(_schoolStart);
     }
 }

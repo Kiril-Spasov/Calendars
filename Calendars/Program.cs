@@ -12,7 +12,7 @@ class Program
         Console.WriteLine("Using " + cal.GetName() + " calendar.");
         Report(jill, schoolSystem);
         Report(jake, schoolSystem);
-
+        Console.WriteLine();
 
     }
     static void Report(Child child, SchoolSystem school)

@@ -29,13 +29,6 @@
 
         private bool IsEndOfMonth() =>
             _day == _calendar.MaxDaysInMonth(_month);
-               
-        private int DaysInMonth() =>
-            _month == 2 ? 29
-            : _month == 4 || _month == 6 || _month == 9 || _month == 11 ? 30
-            : 31;
 
-        private int NextMonth() =>
-            _month == 12 ? 1 : _month + 1;
     }
 }
